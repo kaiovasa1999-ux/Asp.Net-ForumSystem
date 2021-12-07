@@ -1,9 +1,27 @@
-﻿@using ForumSystem.Common
+﻿@model ForumSystem.Web.ViewModels.Home.IndexPageModel
+
+<h2>
+    Welcom To Online newspaper
+    <br />
+    <br />
+    <br />
+</h2>
+
 @{
-    this.ViewData["Title"] = "Home Page";
+    ViewBag.Title = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome to @GlobalConstants.SystemName!</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="row">
+    @foreach (var category in Model.Categoreis)
+    {
+
+        <div class="media col-md-4 ">
+            <img src="@category.ImageUrl" width="150" alt="@category.Title">
+            <div class="media-body">
+                <h4 class="mt-0"><a asp-controller="Categories" asp-action="@category.Title">@category.Title</a></h4>
+                
+            </div>
+        </div>
+        <br />
+    }
 </div>

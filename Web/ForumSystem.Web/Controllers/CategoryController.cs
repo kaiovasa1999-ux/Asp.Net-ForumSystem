@@ -1,16 +1,28 @@
 ﻿namespace ForumSystem.Web.Controllers
 {
+    using ForumSystem.Services.Data.CategoriesService;
+    using ForumSystem.Web.ViewModels.Category;
     using Microsoft.AspNetCore.Mvc;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
 
     public class CategoryController : Controller
     {
-        public IActionResult Index()
+        private readonly ICategoryService categoryService;
+
+        public CategoryController(ICategoryService categoryService)
         {
-            return View();
+            this.categoryService = categoryService;
+        }
+
+        public IActionResult ByTitle(string title)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View();
+            }
+
+            var viewModel = new CategoryViewModel();
+
+            return this.View(viewModel);
         }
     }
 }

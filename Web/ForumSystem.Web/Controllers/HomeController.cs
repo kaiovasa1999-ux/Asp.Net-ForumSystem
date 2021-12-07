@@ -4,6 +4,7 @@
     using System.Linq;
 
     using ForumSystem.Data;
+    using ForumSystem.Services.Data.CategoriesService;
     using ForumSystem.Web.ViewModels;
     using ForumSystem.Web.ViewModels.Home;
     using Microsoft.AspNetCore.Mvc;
@@ -11,23 +12,19 @@
     public class HomeController : BaseController
     {
         private readonly ApplicationDbContext data;
+        private readonly ICategoryService categoryService;
 
-        public HomeController(ApplicationDbContext data)
+        public HomeController(ApplicationDbContext data,ICategoryService categoryService)
         {
             this.data = data;
+            this.categoryService = categoryService;
         }
 
         public IActionResult Index()
         {
             var viewModel = new IndexPageModel();
-            var categories = this.data.Categories.Select(x => new CategriesviewModel
-            {
-                Id = x.Id,
-                ImageUrl = x.ImageUrl,
-                Title = x.Title,
-            }).ToList();
+            var categories = this.categoryService.GetAll<IndexCategriesViewModel>();
             viewModel.Categoreis = categories;
-
             return this.View(viewModel);
         }
 

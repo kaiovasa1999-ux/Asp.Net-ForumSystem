@@ -1,9 +1,14 @@
-﻿using ForumSystem.Web.ViewModels.Home;
-
-namespace ForumSystem.Services.Data.CategoriesService
+﻿namespace ForumSystem.Services.Data.CategoriesService
 {
+    using System.Collections;
+    using System.Collections.Generic;
+
+    using ForumSystem.Web.ViewModels.Home;
+
     public interface ICategoryService
     {
-        CategriesviewModel FindByTitle(string title);
+        IndexCategriesViewModel FindByTitle(string title);
+
+        IEnumerable<T> GetAll<T>(int? count = null);
     }
 }

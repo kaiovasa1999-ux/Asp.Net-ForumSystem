@@ -13,6 +13,13 @@
     <div class="alert alert-warning font-weight-bolder">
         There aren't any avaiable posts in our @Model.Title bulletin!
     </div>
+    <div class="jumbotron">
+        <hr class="my-4">
+        <p>You may add new publication here!!</p>
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" asp-controller="Post" asp-action="AddPost" role="button">Learn more</a>
+        </p>
+    </div>
 }
 else
 {

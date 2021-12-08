@@ -1,0 +1,21 @@
+﻿@model ForumSystem.Web.ViewModels.Categories.CategoryViewModel
+
+@*@{
+    this.ViewBag.Title = Model.Title;
+}*@
+
+<h3 class="display-3">@Model.Title;</h3>
+
+<div class="alert alert-info">
+    @Model.Description
+</div>
+
+@foreach (var post in Model.Posts)
+{
+    <div class="media">
+        <div class="media-body">
+            <h5 class="mt-0">@post.Title</h5>
+            @post.Title
+        </div>
+    </div>
+}

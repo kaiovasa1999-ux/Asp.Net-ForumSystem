@@ -2,10 +2,12 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
 
     using ForumSystem.Data.Common.Repositories;
     using ForumSystem.Data.Models;
     using ForumSystem.Services.Mapping;
+    using ForumSystem.Web.ViewModels.Categories;
     using ForumSystem.Web.ViewModels.Home;
 
     public class CategoryService : ICategoryService
@@ -17,22 +19,20 @@
             this.categoryRepo = categoryRepo;
         }
 
-        public IndexCategriesViewModel FindByTitle(string title)
+        public CategoryViewModel FindByTitle(string title)
         {
-            var category = this.categoryRepo.All().Where(c => c.Title == title)
-                .Select(c => new IndexCategriesViewModel { Title = c.Title, Id = c.Id, ImageUrl = c.ImageUrl }).FirstOrDefault();
-            return category;
+            return this.categoryRepo.All().Where(c => c.Title == title).Select(x => new CategoryViewModel
+            {
+                Id = x.Id,
+                Title = x.Title,
+                ImageUrl = x.ImageUrl,
+                Description = x.Description,
+            }).FirstOrDefault(c => c.Title == title);
         }
 
-        public IEnumerable<T> GetAll<T>(int? count = null)
+        public IEnumerable<IndexCategriesViewModel> GetAll()
         {
-            var categories = this.categoryRepo.All().OrderBy(r => r.Title).AsQueryable();
-            if (count.HasValue)
-            {
-                categories.Take(count.Value);
-            }
-
-            return categories.To<T>().ToList();
+            return this.categoryRepo.All().Where(c => c.Id != 0).Select(x => new IndexCategriesViewModel { Id = x.Id, Title = x.Title, ImageUrl = x.ImageUrl, PostsCount = x.Posts.Count() }).ToList();
         }
     }
 }

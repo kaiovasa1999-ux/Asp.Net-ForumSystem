@@ -6,6 +6,7 @@
     using ForumSystem.Data;
     using ForumSystem.Services.Data.CategoriesService;
     using ForumSystem.Web.ViewModels;
+    using ForumSystem.Web.ViewModels.Categories;
     using ForumSystem.Web.ViewModels.Home;
     using Microsoft.AspNetCore.Mvc;
 
@@ -14,7 +15,7 @@
         private readonly ApplicationDbContext data;
         private readonly ICategoryService categoryService;
 
-        public HomeController(ApplicationDbContext data,ICategoryService categoryService)
+        public HomeController(ApplicationDbContext data, ICategoryService categoryService)
         {
             this.data = data;
             this.categoryService = categoryService;
@@ -22,9 +23,10 @@
 
         public IActionResult Index()
         {
-            var viewModel = new IndexPageModel();
-            var categories = this.categoryService.GetAll<IndexCategriesViewModel>();
-            viewModel.Categoreis = categories;
+            var viewModel = new IndexPageModel()
+            {
+                Categoreis = this.categoryService.GetAll(),
+            };
             return this.View(viewModel);
         }
 

@@ -14,13 +14,13 @@
 <div class="row">
     @foreach (var category in Model.Categoreis)
     {
-
-        <div class="media col-md-4 ">
-            <img src="@category.ImageUrl" width="150" alt="@category.Title">
-            <div class="media-body">
-                <a asp-controller="Category" asp-action="@category.Title">@category.Title</a>
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="@category.ImageUrl" alt="@category.Title">
+            <div class="card-body">
+                <h5 class="card-title">@category.Title</h5>
+                <p class="card-text">@category.Title</p>
+                <a  asp-area="" asp-controller="Categories" asp-action="ByTitle">@category.Title (@category.PostsCount)</a>
             </div>
         </div>
-        <br />
     }
 </div>

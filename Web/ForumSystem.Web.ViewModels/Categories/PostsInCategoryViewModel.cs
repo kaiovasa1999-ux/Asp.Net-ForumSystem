@@ -10,6 +10,8 @@
 
         public string UserUsername { get; set; }
 
+        public string Contnet { get; set; }
+
         public int CommentsCount { get; set; }
     }
 }

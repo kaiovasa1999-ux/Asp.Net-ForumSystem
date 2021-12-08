@@ -8,8 +8,8 @@
 
     public interface ICategoryService
     {
-        CategoryViewModel FindByTitle(string title);
-
         IEnumerable<IndexCategriesViewModel> GetAll();
+
+        T GetByTitle<T>(string title);
     }
 }

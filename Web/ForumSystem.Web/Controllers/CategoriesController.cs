@@ -20,7 +20,7 @@
         [HttpGet]
         public IActionResult ByTitle(string title)
         {
-            var viewModel = this.categoryService.FindByTitle(title);
+            var viewModel = this.categoryService.GetByTitle<CategoryViewModel>(title);
             return this.View(viewModel);
         }
     }

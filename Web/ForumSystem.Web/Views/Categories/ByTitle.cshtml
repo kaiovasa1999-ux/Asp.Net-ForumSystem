@@ -8,7 +8,7 @@
 
 
 
-@if (Model.Posts == null)
+@if (Model.Posts.Count() == 0)
 {
     <div class="alert alert-warning font-weight-bolder">
         There aren't any avaiable posts in our @Model.Title bulletin!
@@ -22,7 +22,15 @@ else
         <div class="media">
             <div class="media-body">
                 <h5 class="mt-0">@post.Title</h5>
-                @post.Title
+                @post.UserUsername
+                <br />
+                <br />
+                @post.Contnet
+                <br />
+                <br />
+                @post.CommentsCount
+                <br />
+                <br />
             </div>
         </div>
     }

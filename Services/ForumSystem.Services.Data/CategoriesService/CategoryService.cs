@@ -19,20 +19,14 @@
             this.categoryRepo = categoryRepo;
         }
 
-        public CategoryViewModel FindByTitle(string title)
-        {
-            return this.categoryRepo.All().Where(c => c.Title == title).Select(x => new CategoryViewModel
-            {
-                Id = x.Id,
-                Title = x.Title,
-                ImageUrl = x.ImageUrl,
-                Description = x.Description,
-            }).FirstOrDefault(c => c.Title == title);
-        }
-
         public IEnumerable<IndexCategriesViewModel> GetAll()
         {
             return this.categoryRepo.All().Where(c => c.Id != 0).Select(x => new IndexCategriesViewModel { Id = x.Id, Title = x.Title, ImageUrl = x.ImageUrl, PostsCount = x.Posts.Count() }).ToList();
+        }
+
+        public T GetByTitle<T>(string title)
+        {
+            return this.categoryRepo.All().Where(c => c.Title == title).To<T>().FirstOrDefault();
         }
     }
 }

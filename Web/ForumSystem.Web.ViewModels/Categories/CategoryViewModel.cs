@@ -9,7 +9,7 @@
     using ForumSystem.Services.Mapping;
     using ForumSystem.Web.ViewModels.Home;
 
-    public class CategoryViewModel
+    public class CategoryViewModel : IMapFrom<Category>
     {
         public int Id { get; set; }
 

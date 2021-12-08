@@ -1,21 +1,29 @@
 ﻿@model ForumSystem.Web.ViewModels.Categories.CategoryViewModel
 
-@*@{
+@{
     this.ViewBag.Title = Model.Title;
-}*@
+}
 
-<h3 class="display-3">@Model.Title;</h3>
+<h3 class="display-2 font-weight-bolder text-center">@Model.Title</h3>
 
-<div class="alert alert-info">
-    @Model.Description
-</div>
 
-@foreach (var post in Model.Posts)
+
+@if (Model.Posts == null)
 {
-    <div class="media">
-        <div class="media-body">
-            <h5 class="mt-0">@post.Title</h5>
-            @post.Title
-        </div>
+    <div class="alert alert-warning font-weight-bolder">
+        There aren't any avaiable posts in our @Model.Title bulletin!
     </div>
+}
+else
+{
+    @foreach (var post in Model.Posts)
+    {
+
+        <div class="media">
+            <div class="media-body">
+                <h5 class="mt-0">@post.Title</h5>
+                @post.Title
+            </div>
+        </div>
+    }
 }

@@ -19,7 +19,7 @@
             <div class="card-body">
                 <h5 class="card-title">@category.Title</h5>
                 <p class="card-text">@category.Title</p>
-                <a  asp-area="" asp-controller="Categories" asp-action="ByTitle">@category.Title (@category.PostsCount)</a>
+                <a asp-controller="Categories" asp-action="ByTitle" asp-route-title="@category.Title">@category.Title (@category.PostsCount)</a>
             </div>
         </div>
     }

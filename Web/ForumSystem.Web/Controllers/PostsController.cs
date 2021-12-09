@@ -30,7 +30,9 @@
         [HttpGet]
         public IActionResult AddPost()
         {
-            return this.View();
+            var viewModel = new PostViewModel();
+            viewModel.Categories = this.postService.GetCategoryTitles();
+            return this.View(viewModel);
         }
 
         [HttpPost]
@@ -43,6 +45,7 @@
             }
 
             var userid = this.User.GetUserId();
+            input.Categories = this.postService.GetCategoryTitles();
             var postId = await this.postService.AddPostAsync(input);
 
             return this.RedirectToAction("PostById", new { id = postId });

@@ -1,5 +1,7 @@
 ﻿namespace ForumSystem.Services.Data.PostServices
 {
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using ForumSystem.Data.Common.Repositories;
@@ -9,10 +11,12 @@
     public class PostService : IPostService
     {
         private readonly IDeletableEntityRepository<Post> postRepo;
+        private readonly IDeletableEntityRepository<Category> categoryRepo;
 
-        public PostService(IDeletableEntityRepository<Post> postRepo)
+        public PostService(IDeletableEntityRepository<Post> postRepo,IDeletableEntityRepository<Category> categoryRepo)
         {
             this.postRepo = postRepo;
+            this.categoryRepo = categoryRepo;
         }
 
         public async Task<int> AddPostAsync(PostViewModel input)
@@ -28,6 +32,17 @@
             await this.postRepo.AddAsync(post);
             await this.postRepo.SaveChangesAsync();
             return input.Id;
+        }
+
+        public IEnumerable<CategoryDropDown> GetCategoryTitles()
+        {
+            var categories = this.categoryRepo.All().Select(c => new CategoryDropDown
+            {
+                Id = c.Id,
+                Title = c.Title,
+            })
+                .ToList();
+            return categories;
         }
     }
 }

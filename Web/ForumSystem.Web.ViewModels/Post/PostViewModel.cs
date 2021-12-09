@@ -20,6 +20,8 @@
 
         public int CategoryId { get; set; }
 
+        public IEnumerable<CategoryDropDown> Categories { get; set; }
+
         public string UserId { get; set; }
 
         [Required]

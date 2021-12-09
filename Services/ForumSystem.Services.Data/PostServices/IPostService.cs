@@ -10,5 +10,7 @@
     public interface IPostService
     {
         Task<int> AddPostAsync(PostViewModel input);
+
+        IEnumerable<CategoryDropDown> GetCategoryTitles();
     }
 }

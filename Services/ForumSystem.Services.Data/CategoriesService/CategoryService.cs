@@ -9,6 +9,7 @@
     using ForumSystem.Services.Mapping;
     using ForumSystem.Web.ViewModels.Categories;
     using ForumSystem.Web.ViewModels.Home;
+    using ForumSystem.Web.ViewModels.Post;
 
     public class CategoryService : ICategoryService
     {
@@ -28,5 +29,7 @@
         {
             return this.categoryRepo.All().Where(c => c.Title == title).To<T>().FirstOrDefault();
         }
+
+       
     }
 }

@@ -5,11 +5,13 @@
 
     using ForumSystem.Web.ViewModels.Categories;
     using ForumSystem.Web.ViewModels.Home;
+    using ForumSystem.Web.ViewModels.Post;
 
     public interface ICategoryService
     {
         IEnumerable<IndexCategriesViewModel> GetAll();
 
         T GetByTitle<T>(string title);
+
     }
 }

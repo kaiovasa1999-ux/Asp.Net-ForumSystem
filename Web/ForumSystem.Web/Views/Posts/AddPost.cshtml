@@ -1,0 +1,23 @@
+﻿@model ForumSystem.Web.ViewModels.Post.PostViewModel
+
+
+
+<form method="post" asp-action="AddPost">
+    <div class="form-group">
+        <label asp-for="Title"></label>
+        <input asp-for="Title" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Contnet"></label>
+        <input asp-for="Contnet" />
+        <span asp-validation-for="Contnet" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CategoryId"></label>
+        <input asp-for="CategoryId" />
+        <span asp-validation-for="CategoryId" class="text-danger"></span>
+    </div>
+    <input asp-for="CategoryId" />
+    <input type="submit" class="btn btn-primary" value="Submit" />
+</form>

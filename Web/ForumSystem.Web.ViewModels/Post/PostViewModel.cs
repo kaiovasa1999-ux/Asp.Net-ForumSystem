@@ -25,7 +25,7 @@
         public string UserId { get; set; }
 
         [Required]
-        [StringLength(maximumLength: 2500, ErrorMessage = "The length of the message couldn't be more then {0}")]
+        [StringLength(maximumLength: 2500, ErrorMessage = "The length of the message couldn't be more then 2500 simbols")]
         public string Contnet { get; set; }
     }
 }

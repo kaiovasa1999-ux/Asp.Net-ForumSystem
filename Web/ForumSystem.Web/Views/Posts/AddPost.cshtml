@@ -25,12 +25,12 @@
         <span asp-validation-for="Contnet" class="text-danger"></span>
     </div>
     <br />
-    <div class="form-group">
+    <div class="form-control">
         <label asp-for="CategoryId">Type</label>
         <select asp-for="CategoryId">
-            @foreach (var gener in Model.Categories)
+            @foreach (var category in Model.Categories)
             {
-                <option value="@gener.Id">@gener.Title</option>
+                <option value="@category.Id">@category.Title</option>
             }
         </select>
     </div>

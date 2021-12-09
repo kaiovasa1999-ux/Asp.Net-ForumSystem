@@ -35,20 +35,14 @@
             return input.Id;
         }
 
-        public IEnumerable<CategoryDropDown> GetCategoryTitles()
-        {
-            var categories = this.categoryRepo.All().Select(c => new CategoryDropDown
-            {
-                Id = c.Id,
-                Title = c.Title,
-            })
-                .ToList();
-            return categories;
-        }
-
-        public IEnumerable<T> GetCategoryTitles<T>()
+        public IEnumerable<T> GetAll<T>(int? count = null)
         {
             var query = this.categoryRepo.All().OrderBy(x => x.Title).AsQueryable();
+            if (count.HasValue)
+            {
+                query = query.Take(count.Value);
+            }
+
             return query.To<T>().ToList();
         }
     }

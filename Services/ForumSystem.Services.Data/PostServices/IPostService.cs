@@ -11,6 +11,6 @@
     {
         Task<int> AddPostAsync(PostViewModel input);
 
-        IEnumerable<T> GetCategoryTitles<T>();
+        IEnumerable<T> GetAll<T>(int? count = null);
     }
 }

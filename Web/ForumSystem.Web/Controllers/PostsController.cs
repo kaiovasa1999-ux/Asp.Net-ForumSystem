@@ -31,7 +31,7 @@
         public IActionResult AddPost()
         {
             var viewModel = new PostViewModel();
-            viewModel.Categories = this.postService.GetCategoryTitles();
+            viewModel.Categories = this.postService.GetCategoryTitles<CategoryDropDown>();
             return this.View(viewModel);
         }
 
@@ -45,7 +45,7 @@
             }
 
             var userid = this.User.GetUserId();
-            input.Categories = this.postService.GetCategoryTitles();
+            input.Categories = this.postService.GetCategoryTitles<CategoryDropDown>();
             var postId = await this.postService.AddPostAsync(input);
 
             return this.RedirectToAction("PostById", new { id = postId });

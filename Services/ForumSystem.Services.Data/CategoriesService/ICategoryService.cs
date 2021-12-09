@@ -12,6 +12,5 @@
         IEnumerable<IndexCategriesViewModel> GetAll();
 
         T GetByTitle<T>(string title);
-
     }
 }

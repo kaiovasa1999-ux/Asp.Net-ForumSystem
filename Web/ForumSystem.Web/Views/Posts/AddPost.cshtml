@@ -4,11 +4,8 @@
 <script type="text/javascript">
     tinymce.init({
         selector: "textarea",
-        relative_urls: true,
-        remove_script_host: true,
-        convert_urls: true,
         plugins: [
-            "image paste table link code media fullscreen wordcount searchreplace lists"
+            "image paste table link code media"
         ]
     });
 </script>
@@ -18,7 +15,7 @@
 
     <div class="form-group">
         <label asp-for="Title"></label>
-        <input asp-for="Title" />
+        <textarea asp-for="Title" class="form-control"></textarea>
         <span asp-validation-for="Title" class="text-danger"></span>
     </div>
     <br />

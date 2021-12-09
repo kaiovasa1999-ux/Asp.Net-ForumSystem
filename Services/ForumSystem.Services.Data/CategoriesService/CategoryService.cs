@@ -29,7 +29,5 @@
         {
             return this.categoryRepo.All().Where(c => c.Title == title).To<T>().FirstOrDefault();
         }
-
-       
     }
 }

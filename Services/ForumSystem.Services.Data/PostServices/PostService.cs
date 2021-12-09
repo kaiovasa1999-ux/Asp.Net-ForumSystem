@@ -6,6 +6,7 @@
 
     using ForumSystem.Data.Common.Repositories;
     using ForumSystem.Data.Models;
+    using ForumSystem.Services.Mapping;
     using ForumSystem.Web.ViewModels.Post;
 
     public class PostService : IPostService
@@ -13,7 +14,7 @@
         private readonly IDeletableEntityRepository<Post> postRepo;
         private readonly IDeletableEntityRepository<Category> categoryRepo;
 
-        public PostService(IDeletableEntityRepository<Post> postRepo,IDeletableEntityRepository<Category> categoryRepo)
+        public PostService(IDeletableEntityRepository<Post> postRepo, IDeletableEntityRepository<Category> categoryRepo)
         {
             this.postRepo = postRepo;
             this.categoryRepo = categoryRepo;
@@ -43,6 +44,12 @@
             })
                 .ToList();
             return categories;
+        }
+
+        public IEnumerable<T> GetCategoryTitles<T>()
+        {
+            var query = this.categoryRepo.All().OrderBy(x => x.Title).AsQueryable();
+            return query.To<T>().ToList();
         }
     }
 }

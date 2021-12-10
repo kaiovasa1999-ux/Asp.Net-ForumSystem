@@ -7,6 +7,7 @@
     using ForumSystem.Data.Models;
     using ForumSystem.Services.Data.PostServices;
     using ForumSystem.Web.IdenityHellpMethod;
+    using ForumSystem.Web.ViewModels.Categories;
     using ForumSystem.Web.ViewModels.Post;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
@@ -23,7 +24,8 @@
 
         public IActionResult PostById(int id)
         {
-            return this.View();
+            var viewModel = this.postService.GetById<PostsInCategoryViewModel>(id);
+            return this.View(viewModel);
         }
 
         [Authorize]

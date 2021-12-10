@@ -12,5 +12,7 @@
         Task<int> AddPostAsync(PostViewModel input);
 
         IEnumerable<T> GetAll<T>(int? count = null);
+
+        T GetById<T>(int id);
     }
 }

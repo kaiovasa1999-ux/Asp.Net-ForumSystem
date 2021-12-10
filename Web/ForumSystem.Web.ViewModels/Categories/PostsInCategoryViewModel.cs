@@ -1,5 +1,6 @@
 ﻿namespace ForumSystem.Web.ViewModels.Categories
 {
+    using System.Net;
     using System.Text.RegularExpressions;
 
     using ForumSystem.Data.Models;
@@ -7,14 +8,16 @@
 
     public class PostsInCategoryViewModel : IMapFrom<Post>
     {
+        public int Id { get; set; }
+
         public string Title { get; set; }
 
         public string FixedTitle
         {
             get
             {
-                var title = Regex.Replace(this.Title, @"<[^>]+>[&]*", string.Empty);
-                return title.Length > 100 ? title.Substring(0, 100) + "..." : title;
+                var title = WebUtility.HtmlDecode(Regex.Replace(this.Title, @"<[^>]+>[&]*", string.Empty));
+                return title.Length > 200 ? title.Substring(0, 200) + "..." : title;
             }
         }
 
@@ -26,8 +29,8 @@
         {
             get
             {
-                var content = Regex.Replace(this.Contnet, @"<[^>]+>[&]*", string.Empty);
-                return content.Length > 100 ? content.Substring(0, 100) + "..." : content;
+                var content = WebUtility.HtmlDecode(Regex.Replace(this.Contnet, @"<[^>]+>[&]*", string.Empty));
+                return content.Length > 200 ? content.Substring(0, 200) + "..." : content;
             }
         }
 

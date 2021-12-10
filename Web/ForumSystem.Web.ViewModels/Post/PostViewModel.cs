@@ -2,9 +2,12 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Net;
+    using System.Text.RegularExpressions;
 
     using ForumSystem.Data.Models;
     using ForumSystem.Services.Mapping;
+    using Ganss.XSS;
 
     public class PostViewModel : IMapFrom<Post>
     {
@@ -12,6 +15,10 @@
 
         [Required]
         public string Title { get; set; }
+
+        public string SanitizedTitle => new HtmlSanitizer().Sanitize(this.Title);
+
+        public string SanitizedContent => new HtmlSanitizer().Sanitize(this.Contnet);
 
         public string UserUserName { get; set; }
 

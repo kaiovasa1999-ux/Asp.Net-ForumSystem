@@ -45,5 +45,11 @@
 
             return query.To<T>().ToList();
         }
+
+        public T GetById<T>(int id)
+        {
+            var post = this.postRepo.All().Where(p => p.Id == id).To<T>().FirstOrDefault();
+            return post;
+        }
     }
 }

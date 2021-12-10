@@ -24,7 +24,14 @@
 
         public IActionResult PostById(int id)
         {
-            var viewModel = this.postService.GetById<PostsInCategoryViewModel>(id);
+            var viewModel = this.postService.GetById<CurrnetPostViewModel>(id);
+            viewModel.UserUserName = this.User.Identity.Name;
+            ////viewModel.c
+            if (viewModel == null)
+            {
+                return this.NotFound();
+            }
+
             return this.View(viewModel);
         }
 
@@ -34,6 +41,8 @@
         {
             var viewModel = new PostViewModel();
             viewModel.Categories = this.postService.GetAll<CategoryDropDown>();
+            viewModel.UserUserName = this.User.Identity.Name;
+            var userid = this.User.GetUserId();
             return this.View(viewModel);
         }
 
@@ -42,7 +51,6 @@
         public async Task<IActionResult> AddPost(PostViewModel input)
         {
             input.Categories = this.postService.GetAll<CategoryDropDown>();
-            var userid = this.User.GetUserId();
             input.UserId = this.User.GetUserId();
             var postId = await this.postService.AddPostAsync(input);
 

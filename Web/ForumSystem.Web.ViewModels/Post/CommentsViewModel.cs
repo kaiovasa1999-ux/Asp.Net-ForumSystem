@@ -9,6 +9,8 @@
     {
         public string Title { get; set; }
 
+        public int PostId { get; set; }
+
         public string UserUserName { get; set; }
 
         public string Content { get; set; }

@@ -24,6 +24,15 @@
             }
         }
 
+        public string FixxedAllTitle
+        {
+            get
+            {
+                var title = WebUtility.HtmlDecode(Regex.Replace(this.Title, @"<[^>]+>[&]*", string.Empty));
+                return title;
+            }
+        }
+
         public string Contnet { get; set; }
 
         public string FixedContent

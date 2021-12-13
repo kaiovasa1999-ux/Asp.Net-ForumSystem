@@ -1,0 +1,12 @@
+﻿@model ForumSystem.Web.ViewModels.Comment.CommentViewModel
+
+<form method="post">
+    <hr />
+    <div>
+        <label asp-for="Content"></label>
+        <input asp-for="Content" />
+        <span asp-validation-for="Content"></span>
+    </div>
+    <hr />
+    <input type="submit" class="btn btn-primary" value="Submit" />
+</form>
